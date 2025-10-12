@@ -26,8 +26,7 @@ public class conexion {
 			JOptionPane.showMessageDialog(vista, e.toString());
 
 			return null;
-			//
-			
+			//co 
 		}
 	}
 }
