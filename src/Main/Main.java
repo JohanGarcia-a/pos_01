@@ -19,6 +19,7 @@ public class Main {
 		EventQueue.invokeLater(() -> {
 			Principal frame = new Principal();
 			frame.setVisible(true);
+			// Prueba para activar el workflow de GitHub Actions
 		});
 	}
 }
