@@ -22,8 +22,11 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      # Este único paso compila, prueba Y ejecuta el análisis de SonarQube
       - name: Build, Test and Analyze with Maven
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+        # El comando es limpio, sin los parámetros -D
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        # Los secretos se definen de forma segura como variables de entorno
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Necesario para análisis de Pull Requests
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
