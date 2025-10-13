@@ -1,7 +1,6 @@
 package vista;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -18,15 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
-
 import controlador.StockColorRenderer;
 import modelo.MalmacenProductos;
 import modelo.Mcategoria;
 import modelo.Mproveedor;
-
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;

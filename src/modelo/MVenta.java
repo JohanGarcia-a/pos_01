@@ -101,7 +101,6 @@ public class MVenta implements Entidad {
 
 	@Override
 	public int getid() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 

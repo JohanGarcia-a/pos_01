@@ -30,7 +30,6 @@ public class CategoriaDAO implements BaseDAO<Mcategoria> {
         return categoriaEncontrada;
     }
 
-    @Override
     public List<Mcategoria> ObtenerTodo() {
         List<Mcategoria> categorias = new ArrayList<>();
         String sql = "SELECT c.Cid, c.Nombre, COUNT(p.Pid) AS ConteoProductos " +

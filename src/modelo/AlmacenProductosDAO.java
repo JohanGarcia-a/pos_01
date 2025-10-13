@@ -15,7 +15,7 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 
 	@Override
 	public MalmacenProductos buscarPorID(int id) {
-		// --- MODIFICACIÓN AQUÍ: Añadido p.StockMinimo a la consulta ---
+
 		String sql = "SELECT p.*, tp.NombreP, tc.Nombre AS NombreCategoria " + "FROM TablaAlmacen_Productos p "
 				+ "INNER JOIN TablaProveedores tp ON p.ProveedorID = tp.Pid "
 				+ "INNER JOIN TablaCategorias tc ON p.CategoriaID = tc.Cid " + "WHERE p.Pid=?";
@@ -26,7 +26,6 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 			ps.setInt(1, id);
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
-					// --- MODIFICACIÓN AQUÍ: Se pasa el nuevo campo al constructor ---
 					productoEncontrado = new MalmacenProductos(rs.getInt("Pid"), rs.getString("Nombre"),
 							rs.getString("Descripcion"), rs.getDouble("Precio"), rs.getString("Codigo"),
 							rs.getInt("Cantidad"), rs.getString("Ruta_Imagen"), rs.getInt("CategoriaID"),
@@ -41,7 +40,6 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 	}
 
 	public MalmacenProductos buscarPorCodigo(String codigo) {
-		// --- MODIFICACIÓN AQUÍ: Añadido p.StockMinimo a la consulta ---
 		String sql = "SELECT p.*, tp.NombreP, tc.Nombre AS NombreCategoria " + "FROM TablaAlmacen_Productos p "
 				+ "INNER JOIN TablaProveedores tp ON p.ProveedorID = tp.Pid "
 				+ "INNER JOIN TablaCategorias tc ON p.CategoriaID = tc.Cid " + "WHERE p.Codigo=?";
@@ -68,7 +66,6 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 	}
 
 	public List<MalmacenProductos> buscarPorNombre(String nombre) {
-		// --- MODIFICACIÓN AQUÍ: Añadido p.StockMinimo a la consulta ---
 		String sql = "SELECT p.*, tp.NombreP, tc.Nombre AS NombreCategoria " + "FROM TablaAlmacen_Productos p "
 				+ "INNER JOIN TablaProveedores tp ON p.ProveedorID = tp.Pid "
 				+ "INNER JOIN TablaCategorias tc ON p.CategoriaID = tc.Cid " + "WHERE p.Nombre LIKE ?";
@@ -81,7 +78,6 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
-					// --- MODIFICACIÓN AQUÍ: Se pasa el nuevo campo al constructor ---
 					MalmacenProductos producto = new MalmacenProductos(rs.getInt("Pid"), rs.getString("Nombre"),
 							rs.getString("Descripcion"), rs.getDouble("Precio"), rs.getString("Codigo"),
 							rs.getInt("Cantidad"), rs.getString("Ruta_Imagen"), rs.getInt("CategoriaID"),
@@ -99,7 +95,6 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 	@Override
 	public List<MalmacenProductos> ObtenerTodo() {
 		List<MalmacenProductos> productos = new ArrayList<>();
-		// --- MODIFICACIÓN AQUÍ: Añadido p.StockMinimo a la consulta ---
 		String sql = "SELECT p.*, tp.NombreP, tc.Nombre AS NombreCategoria " + "FROM TablaAlmacen_Productos p "
 				+ "INNER JOIN TablaProveedores tp ON p.ProveedorID = tp.Pid "
 				+ "INNER JOIN TablaCategorias tc ON p.CategoriaID = tc.Cid";
@@ -108,7 +103,6 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 				PreparedStatement ps = con.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery()) {
 			while (rs.next()) {
-				// --- MODIFICACIÓN AQUÍ: Se pasa el nuevo campo al constructor ---
 				productos.add(
 						new MalmacenProductos(rs.getInt("Pid"), rs.getString("Nombre"), rs.getString("Descripcion"),
 								rs.getDouble("Precio"), rs.getString("Codigo"), rs.getInt("Cantidad"),
@@ -123,7 +117,6 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 
 	@Override
 	public boolean agregar(MalmacenProductos entidad) {
-		// --- MODIFICACIÓN AQUÍ: Añadida la columna StockMinimo y un '?' ---
 		String sql = "INSERT INTO TablaAlmacen_Productos(Nombre,Descripcion,Precio,Codigo,Cantidad,Ruta_Imagen,ProveedorID,CategoriaID,StockMinimo) VALUES (?,?,?,?,?,?,?,?,?)";
 		boolean exito = false;
 		try (Connection con = conexion.getConexion();
@@ -137,7 +130,7 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 			ps.setString(6, entidad.getRuta());
 			ps.setInt(7, entidad.getProveedorId());
 			ps.setInt(8, entidad.getCategoriaId());
-			ps.setInt(9, entidad.getStockMinimo()); // --- MODIFICACIÓN AQUÍ: Se añade el nuevo parámetro ---
+			ps.setInt(9, entidad.getStockMinimo()); 
 
 			if (ps.executeUpdate() > 0) {
 				exito = true;
@@ -150,7 +143,6 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 
 	@Override
 	public boolean modificar(MalmacenProductos entidad) {
-		// --- MODIFICACIÓN AQUÍ: Añadido StockMinimo = ? ---
 		String sql = "UPDATE TablaAlmacen_Productos SET Nombre=?, Descripcion=?, Precio=?, Codigo=?, Cantidad=?, Ruta_Imagen=?, ProveedorID=?, CategoriaID=?, StockMinimo=? WHERE Pid=?";
 		boolean exito = false;
 
@@ -163,8 +155,8 @@ public class AlmacenProductosDAO implements BaseDAO<MalmacenProductos> {
 			ps.setString(6, entidad.getRuta());
 			ps.setInt(7, entidad.getProveedorId());
 			ps.setInt(8, entidad.getCategoriaId());
-			ps.setInt(9, entidad.getStockMinimo()); // --- MODIFICACIÓN AQUÍ: Se añade el nuevo parámetro ---
-			ps.setInt(10, entidad.getid()); // --- MODIFICACIÓN AQUÍ: El ID ahora es el parámetro 10 ---
+			ps.setInt(9, entidad.getStockMinimo()); 
+			ps.setInt(10, entidad.getid());
 
 			if (ps.executeUpdate() > 0) {
 				exito = true;
