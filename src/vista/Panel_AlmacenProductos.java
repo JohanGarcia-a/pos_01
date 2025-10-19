@@ -63,8 +63,7 @@ public class Panel_AlmacenProductos extends VistaGenerica {
 			table.getColumnModel().getColumn(i).setCellRenderer(stockRenderer);
 		}
 
-		// --- MODIFICACIÓN AQUÍ: Añadimos el código para OCULTAR la columna "Stock
-		// Mín." ---
+
 
 		TableColumn stokmin = table.getColumnModel().getColumn(8);
 		// La ocultamos poniendo su ancho a cero
@@ -109,12 +108,11 @@ public class Panel_AlmacenProductos extends VistaGenerica {
 		gbc_scrollProveedor.fill = GridBagConstraints.VERTICAL;
 		gbc_scrollProveedor.gridx = 1;
 		gbc_scrollProveedor.gridy = 0;
-
-		// --------------------------Categoria----------------------------------
 		comboProveedor = new JComboBox<Mproveedor>();
 		ScrollProveedor.setViewportView(comboProveedor);
 		Panel.add(ScrollProveedor, gbc_scrollProveedor);
-
+		
+		// --------------------------Categoria----------------------------------
 		Lcategoria = new JLabel("Categoria");
 		GridBagConstraints gbc_lcategoria = new GridBagConstraints();
 		gbc_lcategoria.anchor = GridBagConstraints.EAST;
@@ -130,10 +128,10 @@ public class Panel_AlmacenProductos extends VistaGenerica {
 		gbc_scrollCategoria.gridx = 1;
 		gbc_scrollCategoria.gridy = 1;
 		Panel.add(ScrollCategoria, gbc_scrollCategoria);
-
 		comboCategoria = new JComboBox<Mcategoria>();
 		ScrollCategoria.setViewportView(comboCategoria);
-//----------------nombre----------------
+		
+        //----------------nombre----------------
 		JLabel Lnombre = new JLabel("Nombre:");
 		GridBagConstraints gbc_Lnombre = new GridBagConstraints();
 		gbc_Lnombre.insets = new Insets(0, 0, 5, 5);

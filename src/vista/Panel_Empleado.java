@@ -10,12 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modelo.Mempleado;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Panel_Empleado extends VistaGenerica {
 
 	private JTextField Tnombre;
 	private JTextField TnumCel;
-	private JTextField Trol;
+	private JComboBox<String> comboRol;
 
 	public Panel_Empleado() {
 		super("Empleados", new String[] { "Eid", "Nombre de Empleado", "Número Tel.", "Rol" });
@@ -79,14 +81,14 @@ public class Panel_Empleado extends VistaGenerica {
 		gbc_Lrol.gridy = 2;
 		Panel.add(Lrol, gbc_Lrol);
 
-		Trol = new JTextField(20);
-		Trol.setText("");
-		GridBagConstraints gbc_trol = new GridBagConstraints();
-		gbc_trol.anchor = GridBagConstraints.WEST;
-		gbc_trol.insets = new Insets(0, 0, 5, 0);
-		gbc_trol.gridx = 1;
-		gbc_trol.gridy = 2;
-		Panel.add(Trol, gbc_trol);
+		comboRol = new JComboBox();
+		comboRol.setModel(new DefaultComboBoxModel(new String[] { "ADMIN", "GENERAL", "SUPERVISOR" }));
+		GridBagConstraints gbc_comboRol = new GridBagConstraints();
+		gbc_comboRol.anchor = GridBagConstraints.WEST;
+		gbc_comboRol.insets = new Insets(0, 0, 5, 0);
+		gbc_comboRol.gridx = 1;
+		gbc_comboRol.gridy = 2;
+		Panel.add(comboRol, gbc_comboRol);
 
 		// Fila 3: Botón Limpiar
 		JButton Blimpiar = new JButton("Limpiar");
@@ -118,6 +120,7 @@ public class Panel_Empleado extends VistaGenerica {
 		Tnombre.setText("");
 		TnumCel.setText("");
 		Tbuscar.setText("");
+		comboRol.setSelectedIndex(-1);
 		table.clearSelection();
 
 	}
@@ -134,7 +137,7 @@ public class Panel_Empleado extends VistaGenerica {
 			Tbuscar.setText(id);
 			Tnombre.setText(nombre);
 			TnumCel.setText(tpNumero);
-			Trol.setText(rol);
+			comboRol.setSelectedItem(rol);
 		}
 
 	}
@@ -144,7 +147,7 @@ public class Panel_Empleado extends VistaGenerica {
 
 		String nombre = Tnombre.getText().trim();
 		String numeroTel = TnumCel.getText().trim();
-		String rol = Trol.getText().trim();
+		String rol = (String) comboRol.getSelectedItem();
 
 		if (nombre.isEmpty()) {
 			mostrarError("El campo 'Nombre' no puede estar vacío.");

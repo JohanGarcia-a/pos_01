@@ -15,7 +15,6 @@ public class Main {
 			e.printStackTrace();
 		}
 	
-		// El resto de tu código para iniciar la aplicación...
 		EventQueue.invokeLater(() -> {
 			Principal frame = new Principal();
 			frame.setVisible(true);

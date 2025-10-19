@@ -3,7 +3,6 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.Box;
@@ -12,7 +11,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
-import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
 import controlador.Controlador;
@@ -22,7 +20,6 @@ import modelo.AlmacenProductosDAO;
 import modelo.CategoriaDAO;
 import modelo.ClienteDAO;
 import modelo.EmpleadoDAO;
-import modelo.MalmacenProductos;
 import modelo.Mcategoria;
 import modelo.Mcliente;
 import modelo.Mempleado;
@@ -43,6 +40,9 @@ public class Principal extends JFrame {
 		setBounds(100, 100, 1200, 700);
 		setExtendedState(JFrame.MAXIMIZED_BOTH); // Inicia maximizado
 
+		
+		
+		
 		JPanel contentPane = new JPanel(new BorderLayout(5, 5));
 		setContentPane(contentPane);
 
